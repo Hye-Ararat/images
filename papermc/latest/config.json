@@ -1,0 +1,47 @@
+{
+    "architectures": ["amd64, arm64"],
+    "os": "papermc",
+    "release": "latest",
+    "variant": "stateless",
+    "aliases": "papermc",
+    "imageserver": "https://images.linuxcontainers.org",
+    "base": "debian/bookworm",
+    "commands": [
+        "adduser hye --disabled-password --gecos ''",
+        "apt-get install curl wget -y",
+        "mv /root/download.sh /home/hye/download.sh",
+        "apt install openjdk-17-jre-headless -y",
+        "chmod +x /home/hye/download.sh",
+        "/home/hye/download.sh",
+        "rm /home/hye/download.sh",
+        "mv /root/paperclip.jar /home/hye/paper.jar",
+        "chown -R hye:hye /home/hye"
+    ],
+    "files": [
+        "download.sh:/root/download.sh"
+    ],
+    "properties": {
+        "environment": [
+            {
+                "key": "SERVER_JARFILE",
+                "value": "paper.jar"
+            },
+            {
+                "key": "PRIMARY_PORT",
+                "value": "25565"
+            }
+        ],
+        "startup": "java -Xms128M -XX:MaxRAMPercentage=95.0 -jar $SERVER_JARFILE",
+        "user": 1000,
+        "working_dir": "/home/hye"
+    },
+    "templates": {
+        "/home/hye/server.properties": {
+            "when": [
+                "create"
+            ],
+            "template": "serverproperties.tpl",
+            "create_only": true
+        }
+    }
+}
