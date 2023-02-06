@@ -1,11 +1,11 @@
 {
-    "architectures": ["amd64, arm64"],
+    "architectures": ["amd64", "arm64"],
     "os": "papermc",
     "release": "latest",
     "variant": "stateless",
     "aliases": "papermc",
     "imageserver": "https://images.linuxcontainers.org",
-    "base": "debian/bookworm",
+    "base": "debian/bookworm/cloud",
     "commands": [
         "adduser hye --disabled-password --gecos ''",
         "apt-get install curl wget -y",

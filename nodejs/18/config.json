@@ -5,12 +5,13 @@
     "variant": "stateless",
     "aliases": "node/18",
     "imageserver": "https://images.linuxcontainers.org",
-    "base": "debian/bullseye",
+    "base": "debian/bullseye/cloud",
     "commands": [
         "adduser hye --disabled-password --gecos ''",
         "apt-get install curl wget -y",
         "curl -fsSL https://deb.nodesource.com/setup_18.x | bash -",
         "apt-get install -y nodejs build-essential"
     ],
-    "files":[]
+    "files":[],
+    "templates": {}
 }
