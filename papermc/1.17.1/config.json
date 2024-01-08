@@ -1,7 +1,7 @@
 {
     "architectures": ["amd64", "arm64"],
     "os": "papermc",
-    "release": "latest",
+    "release": "1.17.1",
     "variant": "stateless",
     "aliases": "papermc",
     "imageserver": "https://images.linuxcontainers.org",
