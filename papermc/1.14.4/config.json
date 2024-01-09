@@ -1,5 +1,8 @@
 {
-    "architectures": ["amd64", "arm64"],
+    "architectures": [
+        "amd64",
+        "arm64"
+    ],
     "os": "papermc",
     "release": "1.14.4",
     "variant": "stateless",
@@ -7,15 +10,14 @@
     "imageserver": "https://images.linuxcontainers.org",
     "base": "debian/bullseye/cloud",
     "commands": [
-        "adduser hye --disabled-password --gecos ''",
+        "mkdir /server",
         "apt-get install curl wget -y",
-        "mv /root/download.sh /home/hye/download.sh",
+        "mv /root/download.sh /server/download.sh",
         "apt install openjdk-11-jre-headless -y",
-        "chmod +x /home/hye/download.sh",
-        "/home/hye/download.sh",
-        "rm /home/hye/download.sh",
-        "mv /root/paperclip.jar /home/hye/paper.jar",
-        "chown -R hye:hye /home/hye"
+        "chmod +x /server/download.sh",
+        "/server/download.sh",
+        "rm /server/download.sh",
+        "mv /root/paperclip.jar /server/paper.jar"
     ],
     "files": [
         "download.sh:/root/download.sh"
@@ -32,11 +34,10 @@
             }
         ],
         "startup": "java -Xms128M -XX:MaxRAMPercentage=97.0 -jar $SERVER_JARFILE",
-        "user": 1000,
-        "working_dir": "/home/hye"
+        "working_dir": "/server"
     },
     "templates": {
-        "/home/hye/server.properties": {
+        "/server/server.properties": {
             "when": [
                 "create"
             ],

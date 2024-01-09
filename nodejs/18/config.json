@@ -1,5 +1,8 @@
 {
-    "architectures": ["amd64", "arm64"],
+    "architectures": [
+        "amd64",
+        "arm64"
+    ],
     "os": "node.js",
     "release": "18",
     "variant": "stateless",
@@ -7,17 +10,16 @@
     "imageserver": "https://images.linuxcontainers.org",
     "base": "debian/bullseye/cloud",
     "commands": [
-        "adduser hye --disabled-password --gecos ''",
+        "mkdir /server",
         "apt-get install curl wget -y",
         "curl -fsSL https://deb.nodesource.com/setup_18.x | bash -",
         "apt-get install -y nodejs build-essential"
     ],
     "properties": {
         "environment": [],
-        "startup": "npm i && node index.js",
-        "user": 1000,
-        "working_dir": "/home/hye"
+        "startup": "npm i && npm run start",
+        "working_dir": "/server"
     },
-    "files":[],
+    "files": [],
     "templates": {}
 }
